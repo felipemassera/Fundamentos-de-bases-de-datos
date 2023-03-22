@@ -1,15 +1,18 @@
-1000 0.00  !j3+hDdmd5DbvjD�A�A�A
-0 182  camarita
-=2~I8Tv91VAApXj�A�A�A7@
-102 0.00  UYfAqY4D}>sN 85�A�A�A
-256 74  holi como va
-Wtl6~SdNmRJ3R<+�A�A�A7@
--19120 0.00  /g$tS`n^['WduPb�A�A�A
-330 449  que se yo
-=/a7TqJcFlXs~r8�A�A�A7@
-1920 0.00 r*lRwq/q[iEO~9#T�AL�AT�A@
-439 406 me gusta la 
-#S]}"w22uP=<NhfT�AL�AT�A7@
-7000 0.00 M_O8nm7McC+>/UPT�AL�AT�A@
-77 170 miedo al exito
-Xm*hOj2H*1X0"?1T�AL�AT�A7@
+100  3.6005000000000000E+003   Samsung
+0 182   camarita trasera 8gb ram
+a52
+101  5.3000000000000000E+003   Samsung
+200 74   celular con camarita frontal y trasera de 3mp
+prime i2
+250  1.6000000000000000E+003   Motorola
+330 449   motorola con vidrio gorila glass
+moto g 4
+192  1.4440000000000000E+003   motorola
+0 406   motorola basico con flash 
+moto e prime
+700  1.0000000000000000E+003   apple
+77 170   camara frontal de 300mp, te bate la chocolatada y te saca a pasear el perro
+iphone 11
+701  1.2000000000000000E+003   apple
+0 10   camara frontal de 300mp, 72gb ram, pantalla amoled gorila glass
+iphone 11 pro max
