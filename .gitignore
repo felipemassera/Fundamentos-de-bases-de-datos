@@ -1,2 +1,4 @@
 # Ignora todos los archivos de powerpoint
 *.pptx
+*.o
+*.exe
