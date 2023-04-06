@@ -1,2 +1,2 @@
 
-  regMae: reporteM;
+  WriteLn('safominimo');
