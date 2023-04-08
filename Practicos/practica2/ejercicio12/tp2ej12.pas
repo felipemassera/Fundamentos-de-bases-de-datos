@@ -1,3 +1,5 @@
+
+
 {12. La empresa de software ‘X’ posee un servidor web donde se encuentra alojado el sitio de
 la organización. En dicho servidor, se almacenan en un archivo todos los accesos que se
 realizan al sitio.
@@ -44,3 +46,43 @@ no encontrado”.
 - El recorrido del archivo debe realizarse una única vez procesando sólo la información
 necesaria.    
 }
+
+Program tp2ej12;
+const
+    valor_alto = 9999;
+Type 
+  anios = Record
+    anio : integer;
+    mes: Integer;
+    dia: Integer;
+  End;
+  regServidor = Record
+    fecha : anios;
+    idUsuario: integer;
+    tiempo: integer;
+  End;
+  archivo = file of regServidor;
+
+   procedure leer (var a:archivo; var aux : regServidor);
+   begin
+     if (not eof(a))then
+        read(a,aux)      
+    else
+        aux.fecha.anio:= valor_alto;
+   end; 
+   
+   procedure procesarArhivo(var a: archivo);
+   var
+    aux: regServidor;
+
+   begin
+    asseg 
+
+   end;
+
+Var 
+    a :archivo;
+Begin
+    crearBin(a);
+    procesarArhivo(a);
+End.
