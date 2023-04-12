@@ -1,5 +1,3 @@
-
-
 {12. La empresa de software ‘X’ posee un servidor web donde se encuentra alojado el sitio de
 la organización. En dicho servidor, se almacenan en un archivo todos los accesos que se
 realizan al sitio.
@@ -70,15 +68,75 @@ Type
     else
         aux.fecha.anio:= valor_alto;
    end; 
-   
+   procedure crearBin(var a:archivo);
+   var
+    txt: Text;
+    aux: regServidor;
+   begin
+     assign(a,'maestro.bin');
+     Rewrite(a);
+     assign(txt,'maestro.txt');
+     reset(txt);
+     while not eof (txt) do begin
+        with aux do begin
+          read(txt,fecha.anio, fecha.mes, fecha.dia, idUsuario, tiempo);        
+        end;
+        Write(a,aux);
+     end;
+     close(a); 
+     close(txt);
+   end;
+
    procedure procesarArhivo(var a: archivo);
    var
     aux: regServidor;
-
+    fechaActual: anios;
+    buscado, totalMes, totalAnio, totalDia, totalUsuario, usuarioActual:integer;
    begin
-    asseg 
-
+    writeln('Ingrese el año que desea filtrar');
+    readln(buscado);
+    assign(a, 'maestro.bin');
+    reset(a);
+    leer(a, aux);
+    writeln('Anio: ', buscado);
+    while(aux.fecha.anio <> valor_alto) and (aux.fecha.anio<>buscado) do
+      leer(a, aux);
+    if(aux.fecha.anio=valor_alto)then
+      writeln('Anio no encontrado')
+    else
+    begin
+      totalAnio:=0;
+      while(aux.fecha.anio=buscado)do begin
+        fechaActual.mes:= aux.fecha.mes;
+        totalMes:= 0;
+        writeln('Mes: ', fechaActual.mes);
+        while(aux.fecha.anio=buscado) and (fechaActual.mes = aux.fecha.mes) do
+        begin
+          fechaActual.dia:= aux.fecha.dia;
+          totalDia:= 0;
+          writeln('Dia: ', fechaActual.dia);
+          while(aux.fecha.anio=buscado) and(fechaActual.mes = aux.fecha.mes) and (fechaActual.dia = aux.fecha.dia)do
+          begin
+            usuarioActual:=aux.idUsuario;
+            totalUsuario:=0;
+            while(aux.fecha.anio=buscado) and (fechaActual.mes = aux.fecha.mes) and (fechaActual.dia = aux.fecha.dia) and (usuarioActual=aux.idUsuario)do begin
+              totalUsuario:=totalUsuario+aux.tiempo;
+              leer(a,aux);
+            end;
+            writeln('idUsiario ',usuarioActual,'; tiempo total de acceso en el dia ',fechaActual.dia,', mes ',fechaActual.mes,': ',totalUsuario);
+            totalDia:=totalDia+totalUsuario;
+          end;
+          writeln('Tiempo total de acceso dia ',fechaActual.dia,', mes ',fechaActual.mes,': ',totalDia);
+          totalMes:=totalMes+totalDia;
+        end;
+        writeln('Tota tiempo de acceso mes ',fechaActual.mes,': ',totalMes);
+        totalAnio:=totalAnio+totalMes;
+      end;
+      writeln('Total tiempo de acceso anio: ', totalAnio);
+    end;
+   close(a);
    end;
+   
 
 Var 
     a :archivo;
