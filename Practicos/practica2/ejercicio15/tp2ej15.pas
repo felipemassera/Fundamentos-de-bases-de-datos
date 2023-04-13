@@ -28,8 +28,8 @@ type
     rMae = record
         codPcia: integer;
         codLoc: integer;
+        nombreProv: string;
         nombreLoc: string;
-        //nombreProv: string;
         sLuz: integer;
         sGas: integer;
         chapa: integer;
@@ -137,9 +137,9 @@ var
     vec: vector; 
 begin
     asignar(m,vec);
+    WriteLn('COMIENZO a ver Maestro s/modificar');
     vermae(m);
-    WriteLn('Fin ver Maestro s/modificar');
     actualizarMaestro(m,vec);
+    WriteLn('Comienzo ver Maestro modificado');
     vermae(m);
-    WriteLn('Fin ver Maestro modificado');
 end.

@@ -1,0 +1,6 @@
+ localidad1
+ municipio1
+1600
+ localidad3
+ municipio1
+2000

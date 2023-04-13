@@ -1,6 +1,7 @@
 1
 101
 Buenos Aires
+Caba
 25000
 0
 1
@@ -8,6 +9,7 @@ Buenos Aires
 0
 1
 102
+BuenosAires
 La Plata
 0
 1
@@ -16,6 +18,7 @@ La Plata
 0
 2
 201
+cordoba
 Córdoba
 5
 3
@@ -24,6 +27,7 @@ Córdoba
 1
 2
 202
+SantaFe
 Villa María
 1
 2
@@ -33,6 +37,7 @@ Villa María
 3
 301
 Rosario
+Rosario Capital
 3
 0
 1
@@ -40,6 +45,7 @@ Rosario
 0
 3
 302
+NoSe
 Santa Fe
 0
 0
