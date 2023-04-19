@@ -245,15 +245,15 @@ begin
     writeln('ingrese en que pos quieres eliminar del archivo');
     readln(pos);
     if (pos< (filesize(arch)-1)) then begin
-	    seek(arch, filesize(arch)-1);
-	    read(arch,aux);
-	    seek(arch, pos);
-	    write(arch,aux);
-	    seek(arch, filesize(arch)-1);
-	    truncate(arch);
+        seek(arch, filesize(arch)-1);
+        read(arch,aux);
+        seek(arch, pos);
+        write(arch,aux);
+        seek(arch, filesize(arch)-1);
+        truncate(arch);
     end else if (pos = fileSize(arch)-1) then begin
-    	seek(arch, filesize(arch)-1);
-	truncate(arch);
+    	  seek(arch, filesize(arch)-1);
+	      truncate(arch);
     end else
             writeln('no se puede borrar el archivo, pos supera el tamaño del archivo');	    
     close(arch);
