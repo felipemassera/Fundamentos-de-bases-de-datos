@@ -1,0 +1,22 @@
+
+0 0 0 
+Linux
+1991 1 1 La distribucion original creada por Linus Torvalds.
+Slakware
+1993 1 2 Una de las distribuciones mas antiguas y estables, disenada para usuarios avanzados.
+Debian
+1993 91 60 Una distribucion muy popular que prioriza la estabilidad y la libertad del usuario.
+Red Hat
+1994 1 150 Una distribucion orientada a empresas y corporaciones, con una version comunitaria llamada Fedora.
+Mandrake (ahora Mandriva)
+1998 5 2 Una distribucion centrada en la facilidad de uso para usuarios dometicos y de escritorio.
+Arch Linux
+2002 1 10 Una distribucion de rolling release diseñada para usuarios avanzados y minimalistas.
+Ubuntu
+2004 410 400 Una distribucion muy popular basada en Debian, enfocada en la facilidad de uso y accesibilidad para los usuarios.
+Fedora
+2005 4 1200 La version comunitaria de Red Hat, centrada en la innovacion y la vanguardia tecnologica.
+CentOS
+2006 4 50 Una distribucion de servidor comunitaria basada en Red Hat Enterprise Linux (RHEL), centrada en la estabilidad y la compatibilidad.
+Manjaro
+2010 80 15 Una distribucion basada en Arch Linux, disenada para usuarios avanzados pero mas accesible que Arch.

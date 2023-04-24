@@ -1,3 +1,4 @@
+
 {6. Una cadena de tiendas de indumentaria posee un archivo maestro no ordenado
 con la información correspondiente a las prendas que se encuentran a la venta. De
 cada prenda se registra: cod_prenda, descripción, colores, tipo_prenda, stock y
@@ -20,88 +21,146 @@ Type
   prenda = Record
     cod_prenda: integer;
     descripcion: string;
-    color:string;
+    color: string;
     tipo_prenda: string;
     stock: integer;
     precio: integer;
   End;
-  
-  archivo = file of prenda;
-  detalle = file of integer;
 
-procedure leer(var a:archivo; var p :prenda);
-begin
-    if (not eof(a)) then
-        read(a,p)
-    else
-        p.cod_prenda:= valor_alto;
-end; 
+  archivo = file Of prenda;
+  detalle = file Of integer;
 
-procedure actualizar (var a:archivo ; var d:detalle);
-    procedure baja(var a:archivo; cod: integer);
-    var
-        cabecera, aux: prenda;
-    begin
-        reset(a);
-        if not eof (a) then read(a,cabecera);
+Procedure leer(Var a:archivo; Var p :prenda);
+Begin
+  If (Not eof(a)) Then
+    read(a,p)
+  Else
+    p.cod_prenda := valor_alto;
+End;
+
+Procedure listarArchivo(Var a:archivo);
+Var 
+  aux: prenda;
+Begin
+  reset(a);
+  While Not eof(a) Do
+    Begin
+      read(a,aux);
+      WriteLn('Codigo: ',aux.cod_prenda,', Descripcion: ', aux.descripcion, ' Stock: ', aux.stock);
+    End;
+  close(a);
+  WriteLn('### Fin Listar Archivo ###');
+End;
+
+Procedure actualizar (Var a:archivo ; Var d:detalle);
+    Procedure baja(Var a:archivo; cod: integer);
+
+    Var 
+    cabecera, aux: prenda;
+    swap: integer;
+    Begin
+    reset(a);
+    If Not eof (a) Then read(a,cabecera);
+    leer(a,aux);
+    While ((aux.cod_prenda<>valor_alto) And (aux.cod_prenda<>cod)) Do
         leer(a,aux);
-        while ((aux.cod_prenda<>valor_alto) and (aux.cod_prenda<>cod)) do 
-            leer(a,aux);
-        if (aux.cod_prenda<>valor_alto) then begin
-
-
-///////////////FALTA TERMINAR EL MODUILO DE CREACION Y EL DE BAJA> >?>>>>>>>>>>
-        end;
-        
-    end;
-
-
-var
-    cod: Integer;
-begin
-    reset(d);
-    while not eof(d) do begin
-        read(d,cod);
-        baja(a,cod);
-    end;
-    close(d);
-    WriteLn('***Actualizacion realizada con exito***');
-end;
-
-procedure crearArchivos(var a : archivo; var d :detalle);
-var
-    t: Text;
-    aux: prenda;
-    num: integer;
-begin
-    assign(t,'tp3ej6_mae.txt');
-    reset(t);
-    Rewrite(a);
-    while not eof(t) do begin  
-        readln(t,aux.cod_prenda,aux.descripcion);
-        ReadLn(t, aux.stock,aux.color);
-        readl(t,aux.precio,aux.tipo_prenda);
+    If (aux.cod_prenda = cod) Then
+        Begin
+        swap := ((filepos(a)-1) * -1);          //me guardo la posicion donde vamos a borrar de forma logica.
+        seek(a,filepos(a)-1);                 //nos posicionamos en donde esta el archivo que queremos pisar, con el mismo registro, pero con 
+        aux.stock := cabecera.stock;          //actualizamos el valor de la posicion de cabecera. 
         write(a,aux);
-    end;
+        cabecera.stock := swap;               //actualizamos hacia adonde apunta la cabecera
+        seek(a,0);
+        write(a,cabecera);
+        End;
     close(a);
-    close(t);
-    assign(t,'tp3ej6_det.txt');
-    reset(t);
-    Rewrite(d);
-    while not eof (t) do begin
-        readln(t,num);
-        write(d,num);  
+    End;
+Var 
+  cod: Integer;
+Begin
+  reset(d);
+  While Not eof(d) Do
+    Begin
+      read(d,cod);
+      baja(a,cod);
+    End;
+  close(d);
+  WriteLn('***Actualizacion realizada con exito***');
+End;
+
+Procedure compactar(Var a: archivo);
+Var 
+  aux: prenda;
+  aux_arch: archivo;
+  ok: boolean;
+Begin
+    Assign(aux_arch,'tp3ej6_mae_compacto');
+    reset(a);
+    ok:=true;
+    Rewrite(aux_arch);
+    if not eof(a) then begin  
+        while not eof(a) do begin
+            read(a,aux);
+            if aux.stock > 0 then write(aux_arch,aux);
+        end;
+    end else begin 
+        WriteLn('**** Archivo vacio ****');
+        ok:=false;
     end;
-    close(t);
-    close(d);
+    if ok then writeln('*****Archivo compactado con exito*****');
+    close(a);
+    close(aux_arch);
+    //WriteLn('**** LISTAR archivo original ****');              //muestro el archivo antes de borrarlo
+    //listarArchivo(a);
+    
+    erase(a);
+    rename(aux_arch,'tp3ej6_mae');
+    
+    WriteLn('**** LISTAR archivo compactado ****');
+    listarArchivo(aux_arch);
 end;
 
-var
-    a: archivo;
-    d:detalle;
-begin
-    Assign(a,'tp3ej6_mae');
-    Assign(d,'tp3ej6_det');
-    crearArchivos(a,d);
-    actualizar(a,d);
-end.
+Procedure crearArchivos(Var a : archivo; Var d :detalle);
+Var 
+  t: Text;
+  aux: prenda;
+  num: integer;
+Begin
+  assign(t,'tp3ej6_mae.txt');
+  reset(t);
+  Rewrite(a);
+  While Not eof(t) Do
+    Begin
+      readln(t,aux.cod_prenda,aux.descripcion);
+      ReadLn(t, aux.stock,aux.color);
+      readln(t,aux.precio,aux.tipo_prenda);
+      write(a,aux);
+    End;
+  close(a);
+  close(t);
+  assign(t,'tp3ej6_det.txt');
+  reset(t);
+  Rewrite(d);
+  While Not eof (t) Do
+    Begin
+      readln(t,num);
+      write(d,num);
+    End;
+  close(t);
+  close(d);
+  writeln('*****Archivo creado con exito*****');
+End;
+
+
+
+Var 
+  a: archivo;
+  d: detalle;
+Begin
+  Assign(a,'tp3ej6_mae');
+  Assign(d,'tp3ej6_det');
+  crearArchivos(a,d);
+  actualizar(a,d);
+  compactar(a);
+End.
