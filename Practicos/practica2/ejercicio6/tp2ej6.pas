@@ -54,9 +54,7 @@ Begin
         End;
     End;
   If (min.codigoLocalidad<>valorAlto) Then begin
-    WriteLn('leo1: ',pos);
     leer(vD[pos], vR[pos]);
-    WriteLn('leo2');
   end;
 End;
 
