@@ -40,19 +40,23 @@ end;
 
 procedure compactar(var a:archivo ; var b:archivo);
 var
-  aux:aves;
+  aux:aves; pos: integer;
 begin
   reset(a);
-  while (not eof (a)) do begin //////////////////////////SEGUIRLA
+  while (not eof (a)) do begin 
 	read(a,aux);
 	if(aux.nombre_especie[1]= '@') then begin
 	  pos:= FilePos(a)-1;
-	  seek
-
-	  
+	  seek(a, FileSize(a)-1);
+	  read(a,aux);
+	  seek(a,pos);
+	  write(a,aux);
+	  seek(a, FileSize(a)-1);
+	  Truncate(a);
+	  seek(a,pos);
+	  end;
 	end;
   end;
-end;
 
 var
   a:archivo;
