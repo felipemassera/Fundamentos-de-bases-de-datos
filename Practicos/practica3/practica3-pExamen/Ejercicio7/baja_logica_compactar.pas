@@ -24,21 +24,24 @@ type
 
 procedure bajaLogica(var a:archivo);
 var
-  aux : aves;
-begin
-	writeln('ingrese el cod de la ave para dar de baja.');
-	readln(cod);
-	reset(a);
-	while ((not eof(a))and(aux.codigo<>cod)) do read(a,aux);
-	if(aux.codigo = cod) then begin
-		aux.nombre_especie[1]:= '@';
-		seek(a, FilePos(a)-1);
-		write(a,aux);
+  aux : aves; especie:string;
+begin  
+	writeln('ingrese especie para dar de baja.');
+	readln(especie);
+	while (nombre <> '500000') do
+		reset(a);
+		while ((not eof(a)) and (aux.nombre_especie<>especie)) do read(a,aux);
+		if(aux.nombre_especie = especie) then begin
+			aux.nombre_especie[1]:= '@';
+			seek(a, FilePos(a)-1);
+			write(a,aux);
+		writeln('ingrese especie para dar de baja.');
+		readln(especie);
 	end;
 	close(a);
 end;
 
-procedure compactar(var a:archivo ; var b:archivo);
+procedure compactar(var a:archivo);
 var
   aux:aves; pos: integer;
 begin
@@ -53,7 +56,7 @@ begin
 	  write(a,aux);
 	  seek(a, FileSize(a)-1);
 	  Truncate(a);
-	  seek(a,pos);
+	  seek(a,pos-1);
 	  end;
 	end;
   end;

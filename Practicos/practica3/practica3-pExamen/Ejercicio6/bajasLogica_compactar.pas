@@ -29,6 +29,7 @@ var
   aux : prenda;
   cod : integer;
 begin
+  assign(a,'maestro.dat');
   reset(d);
   while (not eof(d)) do begin
     read(d,cod);
@@ -45,6 +46,11 @@ begin
 end;
 
 procedure compactar(var a: maestro ; var b:maestro);
+  procedure renombrar( var a:maestro);
+  begin
+    Erase(a);
+    Rename(b, 'maestro.dat');
+  end;
 var
   aux : prenda;
 begin
@@ -52,9 +58,17 @@ begin
   rewrite(b);
   while (not eof(a)) do begin
     read(a,aux);
-    if (aux.stock < 0) then 
+    if (aux.stock >= 0) then 
       write(b,aux);
   end;
   close(a);
   close(b);
+  renombrar(a,b);
 end;
+
+var
+   m, b: maestro;
+begin
+  bajaLogica(m);
+  compactar(m,b);
+end.

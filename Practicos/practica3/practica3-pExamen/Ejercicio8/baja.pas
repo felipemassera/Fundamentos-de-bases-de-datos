@@ -39,7 +39,7 @@ begin
   reset(a);
   while ((not eof (a)) and (aux.nombre <> nombre)) do read(a,aux);
   close(a);
-  return (aux.nombre = nombre);
+  existeDistribucion:= (aux.nombre = nombre);
 end;
 
 {AltaDistribución: módulo que lee por teclado los datos de una nueva distribución y la
@@ -48,7 +48,7 @@ agrega al archivo reutilizando espacio disponible en caso de que exista.
 En caso de que la distribución que
 se quiere agregar ya exista se debe informar “ya existe la distribución”.}
 
-procedure AltaDistribucion(var a: archivo; d:distro);
+procedure AltaDistribucion(var a: archivo);
   procedure terminarDistro(var aux:distro);
   begin
     WriteLn('Ingrese Anio de Distribucion: ');

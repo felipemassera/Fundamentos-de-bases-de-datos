@@ -54,7 +54,7 @@ begin
   while (not eof(a)) do begin
     read(a,aux);
     if (aux.codigo>0) then
-      writeln(txt, 'codigo: ',aux.codigo, ' nombre: ', aux.nombre);
+      writeln(txt,aux.codigo, ' ', aux.nombre);
   end;
   close(a);
   close(txt);
