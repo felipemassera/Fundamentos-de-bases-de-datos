@@ -1,0 +1,12 @@
+1- D. Nuestra logica es que no siempre los registros van a ser de tamaño = , ni < ,ni >.
+2- D. El ajuste Optimo (creemos mejor ajuste), no tiene sentido usarlo en registros de long Fija
+	pero siempre se podria implementar con registro de long variable . CHEQUEAR si se puede  por que se puede conlong fija, pero no tiene sentido.
+3- nota NRR : numero relativo de registro, es la posicion donde se encuentra el registro en el archivo. 
+   F - algunas de las anterriores, creemos que la D es falsa. 		
+4- F - Se puede concatenar O se PUEDE redistribuir. no nos gusta la frase SE DEBE (ya que si pasa uno no pasa el otro).
+5- e - creemos que las verdaderas son a y b
+6- f - a ,b ,d creemos verdadero. no tenemos en claro c
+7- f - necesitariamos un archivo de COMO MAXIMO 40.000 cubetas (1 clave x cubeta);
+8- f- hubo colision, y pueden no sen sinonimas, sino una intrusa. 
+9- D- permite detectar si la cant de elementos puede crecer.
+10- A- puede desordenarse, pero SI o Si debe ser mantenido ordenado. 
